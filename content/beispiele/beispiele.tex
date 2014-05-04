@@ -1,0 +1,168 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel:   Beispiele
+% Autor:   Simon grossenbacher
+% Datum:   22.09.2013
+% Version: 1.0.1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%:::Change-Log:::
+% Versionierung erfolgt auf folgende Gegebenheiten: -1. Release Versionen
+%                                                   -2. Neue Kapitel
+%                                                   -3. Fehlerkorrekturen
+%
+% 1.0.0       Erstellung der Datei
+% 1.0.1       Bilder im Abschnitt "Verlinkungen" hinzugefügt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+\chapter{Beispiele}\label{ch:beispiele}
+    Das ist ein Beispiel-Kapitel.
+    %
+    %
+    %Ueberschrift 1
+    \section{Überschrift 1}\label{s:uebschrift_1}
+        Das ist eine grosse Überschrift!\par
+        Nächster Absatz.
+        %
+        %Ueberschrift 2
+        \subsection{Überschrift 2}\label{ss:ueberschrift_2}
+            Dies ist eine kleinere Überschrift!
+            %
+            \subsubsection{Überschrift 3}\label{sss:uberschrift_3}
+                Noch eine kleinere Überschrift!
+                %
+                \paragraph{Paragraph} Für kleine Zwischentitel eignet sich der Paragraph.
+    %
+    %
+    %Aufzählungen
+    \section{Aufzählungen}\label{s:aufzaehlungen}
+        Es gibt mehrere Möglichkeiten:
+        \begin{itemize}
+            \item Hallo
+            \item Tschüss
+            %
+            \begin{itemize} %[parsep=1pt, topsep=-10pt] Fuer vertikale Abstaende zwischen den Elementen
+	            \item Unteraufzählung
+            \end{itemize}
+        \end{itemize}
+        \begin{enumerate}
+            \item Eis
+            \item Zwöi
+        \end{enumerate}
+        \begin{description}
+            \item[Ich] Du Ich Du 
+            \item[Er] Sie Er Sie
+        \end{description}
+    %
+    %
+    %Formeln
+    \section{Formeln}\label{s:formeln}
+        Hier bietet sich die Funktion \texttt{formula} an.
+        \formula{
+            U=R\cdot I
+        }{
+            U & Spannung in Volt\\
+            R & Widerstand\\
+            I & Strom}[eq:uri]
+        Es können auch mehrere Formeln zusammengefasst werden (man beachte das \textbf{\&} für die Ausrichtung)!
+        \formula{
+            U&=R\cdot I\\
+            R&= \frac{U}{I}
+        }{
+            U & Spannung in Volt\\
+            R & Widerstand\\
+            I & Strom}[eq:uri2]
+    %
+    %
+    %
+    \section{Theoreme}\label{s:theoreme}
+    	Manchmal ist es nützlich Theoremen oder Definition visuell hervorzuheben. Dazu muss das Paket \texttt{amsthm} eingebunden und in der Präambel ein Theorem mit \texttt{newtheorem\{name\}\{Printed output\}} definiert werden. Das Ergebnis ist unterhalb ersichtlich in Definition \vref{thm:dokument}.
+    	%
+    	\begin{definition}\label{thm:dokument}
+	    	Das ist meine Definition von einer sauberen Dokumentvorlage
+    	\end{definition}
+    %        
+    %
+    %Bilder
+    \section{Bilder}\label{s:bilder}
+        Bilder können mit der Funktion \texttt{image} ein gefügt werden (siehe Abbildung \vref{abb:bfh}). Sollen zwei oder mehr Bilder nebeneinander angeordnet werden, so empfiehlt sich die \texttt{subfigure} Umgebung einzusetzen oder die Funktion \texttt{imageTwo} zu verwenden.
+        \image{content/beispiele/image/bfh_logo}{scale=1}{htbp}[Unterschrift für unter dem Bild \cite{img:bfh}][Bildbeschreibung für im Abbildungsverzeichnis][abb:bfh]
+        \imageTwo{content/beispiele/image/bfh_logo}{content/beispiele/image/bfh_logo}{scale=1}{htbp}[Unterschrift für unter dem Bild \cite{img:bfh}][Bildbeschreibung für im Abbildungsverzeichnis][abb:bfh]
+    %
+    %
+    %Tabellen
+    \section{Tabellen}\label{s:tabellen}
+        Tabellen in \LaTeX sind ziemlich umständlich. Daher empfiehlt sich ein entsprechendes Plugin in der Office-Umgebung, die ein \LaTeX -Export ermöglichen. Weiter sollten der Übersicht zu liebe alle Tabellen in separaten Dateien verwaltet werden. Beispiele sind \vrefrange{tab:tabelle}{tab:tabelleTwo} ersichtlich.
+        %
+        \input{content/beispiele/table/bsptable}
+        \input{content/beispiele/table/bsptable2}
+        %
+        \begin{itemize}
+            \item Falls Bilder in Tabellen nötig sein sollten, Befehl \texttt{imagetotab} verwenden      
+            \item Tabellen über mehrere Seiten sind mit der \texttt{longtable} möglich
+            \item Ist eine Tabelle breiter als es der Satzspiegel erlaubt, so kann sie mit \texttt{sidewaystable}\footnote{anstatt die \texttt{table}-Umgebung} des Pakets \texttt{rotating} gedreht werden
+        \end{itemize}
+    %
+    %
+    %Code
+    \section{Code}\label{s:code}
+        \subsection{ANSI C}\label{ss:c}
+            \begin{lstlisting}[style=C,caption={Hallo Welt},label={list:hallowelt}]
+printf("Hallo Welt"); //Dummy Funktion
+            \end{lstlisting}  
+        %
+        % 
+        \subsection{MATLAB}\label{ss:matlab}
+            \begin{lstlisting}[style=Matlab,caption={Sinnlos},label={list:sinnlos}]
+close all
+clear all
+t = [0:1000];
+plot(t,t); %Dummy-Plot
+            \end{lstlisting}  
+    %
+    %
+    %Verlinkungen
+    \section{Verlinkungen}\label{s:verlinkungen}
+        \begin{description}
+            \item[Fussnoten] Fussnoten werden mit dem Kommando \texttt{footnote} erstellt\footnote{Ich bin eine normale Fussnote}
+            %
+            \item[Verweise] Es kann auf alle Labels verwiesen werden. Dazu dienen die Befehle \texttt{vref}, \texttt{vrefrange\{\}\{\}}, \texttt{vpageref} und \texttt{vpagerefrange\{\}\{\}}: Der Abschnitt \vref{s:verlinkungen} befindet sich \vpageref{s:verlinkungen}. Das \texttt{varioref} Paket unterscheidet dabei ob sich ein Label auf der aktuellen, vorherigen oder nächsten Seite befindet und passt seine Ausgabe dementsprechend an. Soll anstatt auf die Nummer eines Labels auf seinen Text verwiesen werden, so kann \texttt{nameref} eingesetzt werden: \nameref{s:verlinkungen}.\par 
+            %
+            Allgemein gilt für die einzelnen Dokumentkomponente folgende Bezeichnungen:
+            \begin{description}
+	            \item[chapter] Kapitel
+	            \item[section - subsubsection] Abschnitt
+	            \item[paragraph] Paragraph
+	            \item[image] Abbildung
+	            \item[tabularX] Tabelle
+	            \item[formula] Gleichung
+            \end{description}
+            %
+            \item[Quellen] Um auf Quellen zu verweisen, muss das Label bekannt sein (wird in der Datei \texttt{bibliography.bib} festgelegt). Anschliessend muss im \LaTeX~Editor \texttt{BibTex} ausgeführt werden. Daraufhin kann der Befehl \texttt{cite} eingesetzt werden \cite{lit:bsp} oder \cite[S.11]{lit:online}. Evtl. muss das Dokument mehrmals compiliert werden. Für das bessere Verwalten der Quellen, kann bei Bedarf auch ein entsprechender Editor verwendet werden\footnote{z.B. JabRef \url{http://jabref.sourceforge.net/}}.
+            \image{content/beispiele/image/bibtex}{scale=.5}{htbp}[Literaturverzeichnis erstellen]
+            \image{content/beispiele/image/bib}{scale=.5}{htbp}[Ausschnitt aus der \texttt{bibliography.bib} Datei]
+            %
+            \item[Stichwortverzeichnis] Wörter für das Verzeichnis müssen mit \texttt{index} bekannt gemacht werden \index{Index}. Für die Zusammenstellung des Verzeichnisses muss im \LaTeX~Editor \texttt{MakeIndex} durchgeführt werden.
+            \image{content/beispiele/image/index}{scale=.5}{htbp}[Index erstellen][abb:bsp]
+            %
+            \item[Glossar] Definieren in den Dateien \texttt{glossary.text} und \texttt{acronyms.tex} und anschliessend mit \texttt{gls} verwenden\footnote{Achtung: \texttt{makeindex -s \%.ist -o \%.gls \%.acn \%.glo \%.idx}}. \gls{ac:bfh} \gls{g:mammut}
+        \end{description}
+    %
+    %
+    %Diverses
+    \section{Diverses}\label{s:diverses}
+        %
+        %TODOs
+        \subsection{TODOs}\label{ss:todos}
+            Mit dem Befehl \texttt{todo} können noch unfertige Teile \todo{Noch nicht fertig} markiert werden.
+        %
+        %Randnotizen
+        \subsection{Randnotizen}\label{ss:randnotizen}
+        	Der Befehl \texttt{mpar} ermöglicht das Anbringen von Randnotizen. \mpar{Das ist eine Randnotiz}
+       	%
+       	%Einheiten
+       	\subsection{Einheiten}
+       		In einem tech. Bericht müssen immer wieder SI-Einheiten verwendet werden. Dazu gilt es das Paket \texttt{unit} zu nutzen.
+       		%
+       		\begin{itemize}
+	       		\item Alle \unit[10]{cm}
+	       		\item Er fährt \unitfrac[20]{m}{s} schnell
+       		\end{itemize}	

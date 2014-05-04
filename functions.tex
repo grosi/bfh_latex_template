@@ -1,0 +1,243 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel:   Bericht - Funktionen
+% Autor:   Simon Grossenbacher  
+% Datum:   27.09.2013
+% Version: 1.0.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%:::Change-Log:::
+% Versionierung erfolgt auf folgende Gegebenheiten: -1. Release Versionen
+%                                                   -2. Neue Kapitel
+%                                                   -3. Fehlerkorrekturen
+%
+% 0.0.0       Erstellung der Datei
+%
+%:::Hinweis:::
+% Indexerstellung: makeindex -s report.ist report.idx
+%   Umlaute müssen separat behandelt werden!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \low: Text tiefstellen
+% param #1 Text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\low}[1]{\textsubscript{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \high: Text hochstellen
+% param #1 Text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\high}[1]{\textsuperscript{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \changefont:Schrift anpassen
+% param #1 Schriftfamilie: ptm  Times
+%                          phv 	Helvetica
+%                          pcr 	Courier
+%                          pbk 	Bookman
+%                          pag 	Avant Garde
+%                          ppl 	Palatino
+%                          pch 	Charter
+%                          pnc 	New Century Schoolbook
+%                          put 	Utopia
+% param #2 Strichdicke/Zeichenbreite: b  bold
+%                                     m  medium
+% param #3 Schriftform: n   normal
+%                       it  italic
+%                       sl  slanted
+%                       sc  small caps
+%                       ui  upright italic
+% note {\changefont{#1}{#2}{#3} Hallo Welt} Teilbereich aendern
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \zB: Zum Beispiel abkuerzen ohne Trennung
+% param none
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\zB}{z.~B.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \formula: Formeleintrag
+% param #1 Formel
+% param #2 Parameter Beschreibung im Tabellensyntax
+% param #3 Formel-Label (optional)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Savebox fuer Parameterbeschreibung
+\newsavebox{\myendhook} % for the tabulars
+\makeatletter
+\def\tagform@#1{{(\maketag@@@{\ignorespaces#1\unskip\@@italiccorr)}
+\makebox[0pt][r]{% after the equation number
+\makebox[0.5\textwidth][l]{\usebox{\myendhook}}%
+}%
+\global\sbox{\myendhook}{}% clear box content
+}}
+\makeatother 
+%Kommando definieren
+\newcommandx{\formula}[3][3=\empty,usedefault]{
+    \sbox{\myendhook}{%
+        \begin{footnotesize}%
+            \begin{tabular}{>{$}l<{$} >{\RaggedRight}p{.33\textwidth}}%0.33
+                #2%\ifthenelse{\equal{#2}{\empty}}{ }{#2}
+            \end{tabular}
+        \end{footnotesize}}
+    %
+    \begin{equation}
+        \ifthenelse{\equal{#3}{\empty}}
+        {}
+        {\label{#3}}%anstatt equation	
+        \boxed{\begin{split}#1\end{split}}
+        %\begin{split}#1\end{split}
+    \end{equation} %anstatt equation
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \image: Bildereintrag
+% param #1 Pfad zum Bild
+% param #2 Groesse: z.B. scale=0.5
+% param #3 Position: htbp,H
+% param #4 Bildunterschrift (optional)
+% param #5 Bildunterschrift im Abbildungsverzeichnis (optional)
+% param #6 Bildlabel (optional)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\imagewidth}
+\newlength{\imageheight}
+\newcommandx{\image}[6][4=\empty,5=\empty:,6=\empty,usedefault]{
+    \begin{figure}[#3]%H htbp
+        \centering
+        \settowidth{\imagewidth}{\includegraphics[#2]{#1}}
+        \settoheight{\imageheight}{\includegraphics[#2]{#1}}
+        \ifdim\imagewidth<\textwidth
+            \ifdim\imageheight<\textheight
+                \includegraphics[#2]{#1}
+            \else
+                \includegraphics[height=\textheight]{#1}
+            \fi
+        \else
+            \ifdim\imageheight<\textheight
+                \includegraphics[width=\textwidth]{#1}
+            \else
+                \setlength{\imageheight}{\imageheight-\textheight}
+                \setlength{\imagewidth}{\imagewidth-\textwidth}
+                \ifdim\imageheight<\imagewidth
+                    \includegraphics[width=\textwidth]{#1}
+                \else
+                    \includegraphics[height=\textheight]{#1}
+                \fi
+            \fi
+        \fi
+        \ifthenelse{\equal{#6}{\empty}}
+        {
+            \ifthenelse{\equal{#4}{\empty}}{}{\caption{#4}}
+            \ifthenelse{\equal{#5}{\empty}}{}{\label{#5}}
+        }
+        {
+            \caption[#5]{#4}
+            \label{#6}
+        }
+    \end{figure}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \image2: 2 Bildeintraege nebeneinander
+% param #1 Pfad zu Bild 1
+% param #2 Pfad zu Bild 2
+% param #3 Groesse der Bilder: z.B. scale=0.5
+% param #4 Position: htbp,H
+% param #5 Bildunterschrift global (optional)
+% param #6 Bildunterschrift im Abbildungsverzeichnis global (optional)
+% param #7 Bildlabel global (optional)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\imagewidthfirst}
+\newlength{\imagewidthsecond}
+\newcommandx{\imageTwo}[7][5=\empty,6=\empty:,7=\empty,usedefault]{
+	\begin{figure}[#4] %htbp
+		\centering
+		%
+		\settowidth{\imagewidthfirst}{\includegraphics[#3]{#1}}
+		\settowidth{\imagewidthsecond}{\includegraphics[#3]{#2}}
+		%
+		\begin{subfigure}[b]{0.49\textwidth}
+			\centering
+			\ifdim\imagewidthfirst<0.49\textwidth
+				\includegraphics[#3]{#1}  
+			\else
+				\includegraphics[width=0.49]{#1}	
+			\fi         
+		\end{subfigure}
+		\begin{subfigure}[b]{0.49\textwidth}
+			\centering
+			\ifdim\imagewidthsecond<0.49\textwidth
+				\includegraphics[#3]{#2}  
+			\else
+				\includegraphics[width=0.49]{#2}	
+			\fi         
+		\end{subfigure}
+		\ifthenelse{\equal{#7}{\empty}}
+		{
+		  \ifthenelse{\equal{#5}{\empty}}{}{\caption{#5}}
+		  \ifthenelse{\equal{#6}{\empty}}{}{\label{#6}}
+		}
+		{
+		  \caption[#6]{#5}
+		  \label{#7}
+		}
+	  	\end{figure}   
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \imagetotab: Bildereintrag fuer Tabellen
+% param #1 Pfad zum Bild
+% param #2 Groesse: z.B. scale=0.5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\myx} % Variable zum Speichern der Bildbreite
+\newlength{\myy} % Variable zum Speichern der Bildhöhe
+\newcommand{\imagetotab}[2][\relax]{%
+% Abspeichern der Bildabmessungen
+\settowidth{\myx}{\includegraphics[{#1}]{#2}}%
+\settoheight{\myy}{\includegraphics[{#1}]{#2}}%
+% das eigentliche Einfügen
+\parbox[c][1.1\myy][c]{\myx}{%
+\includegraphics[{#1}]{#2}}%
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \tableitemize: Aufzaehlungen in Tabellen
+% vor Aufzaehlung platzieren
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\removeindentation}{%
+	\leftmargini=\labelsep%
+	\advance\leftmargini by \labelsep%
+}
+%
+\makeatletter
+\newcommand\tableitemize{
+	\@minipagetrue%
+	\removeindentation
+}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mpar: Randnotizen
+% param #1 Notiz
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\mpar[1]{\marginpar[\flushleft\sffamily\small #1]{\flushleft\sffamily\small #1}}
+\setlength{\marginparwidth}{3cm}

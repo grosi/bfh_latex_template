@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel:   Bericht - Listings
+% Autor: Simon Grossenbacher  
+% Datum:   04.05.2013
+% Version: 1.0.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%:::Change-Log:::
+% Versionierung erfolgt auf folgende Gegebenheiten: -1. Release Versionen
+%                                                   -2. Neue Kapitel
+%                                                   -3. Fehlerkorrekturen
+%
+% 0.0.0       Erstellung der Datei
+%
+%:::Hinweis:::
+% Indexerstellung: makeindex -s report.ist report.idx
+%   Umlaute müssen separat behandelt werden!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%XML
+\lstdefinestyle{XML}{numbers=left, 
+    basicstyle=\scriptsize\ttfamily,
+    numberstyle=\tiny, 
+    xleftmargin=0.5\leftmargin,
+    xrightmargin=\rightmargin,
+    numbersep=5pt,
+    backgroundcolor=\color{listingbackground}, 
+    breaklines=true,
+    captionpos=b,
+    language=XML}
+
+%MATlAB
+\lstdefinestyle{Matlab}{numbers=left, 
+    basicstyle=\scriptsize\ttfamily,
+    numberstyle=\tiny, 
+    xleftmargin=0.5\leftmargin,
+    xrightmargin=\rightmargin,
+    numbersep=5pt,
+    backgroundcolor=\color{listingbackground}, 
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    breaklines=true,
+    captionpos=b,
+    language=Matlab}
+
+%ANSI C
+\lstdefinestyle{C}{numbers=left, 
+    basicstyle=\scriptsize\ttfamily,
+    numberstyle=\tiny, 
+    xleftmargin=0.5\leftmargin,
+    xrightmargin=\rightmargin,
+    numbersep=5pt,
+    backgroundcolor=\color{listingbackground}, 
+    identifierstyle=\color{colIdentifier}, %
+    keywordstyle=\color{colKeys}, %
+    stringstyle=\color{colString}, %
+    commentstyle=\color{colComments}, %
+    breaklines=true,
+    captionpos=b,
+    language=[ANSI] C}
+
+
+
+

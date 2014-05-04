@@ -1,0 +1,152 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel:   Bericht - Pakete
+% Autor: Simon Grossenbacher  
+% Datum:   27.09.2013
+% Version: 1.0.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%:::Change-Log:::
+% Versionierung erfolgt auf folgende Gegebenheiten: -1. Release Versionen
+%                                                   -2. Neue Kapitel
+%                                                   -3. Fehlerkorrekturen
+%
+% 0.0.0       Erstellung der Datei
+%
+%:::Hinweis:::
+% Indexerstellung: makeindex -s report.ist report.idx
+%   Umlaute muessen separat behandelt werden!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Sprach-Optionen
+\usepackage[ngerman]{babel} %neue deutsche Rechtschreibung
+\usepackage[T1]{fontenc}  %richtige Worttrennung
+%\usepackage[applemac]{inputenc}				% Mac - load extended character set (ISO 8859-1)
+\usepackage[latin1]{inputenc}  				% Unix/Linux - load extended character set (ISO 8859-1)
+%\usepackage[ansinew]{inputenc}  				% Windows - load extended character set (ISO 8859-1)
+%\usepackage[utf8]{inputenc}  					% UTF-8 encoding
+\usepackage{lmodern} % schoenere Standardschrift fuer PDFs
+\usepackage{ae} % Schoene Schriften für PDF-Dateien (rendering)
+
+%Zeilenabstand
+\usepackage{setspace}
+
+%Mehr Tabellenoptionen
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage{booktabs} %professionelle Tabellen
+
+%Listen
+\usepackage{enumitem}
+
+%Besserer Flattersatz
+\usepackage{ragged2e}
+
+%Gleiten verhindern
+\usepackage{float}
+\usepackage{placeins}
+
+%Ueberschriften anpassen
+\usepackage{titlesec} 
+
+%Farben
+\usepackage{color}
+\usepackage{colortbl} %Fuer farbige Tabellen
+
+%PDF zu Dokument hinzufuegen
+\usepackage[final]{pdfpages}
+
+%Grafiken verwalten
+\usepackage{graphicx}
+\usepackage[absolute]{textpos}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+
+%Zeichnen
+%\usepackage{pst-pdf}
+%\usepackage{pst-all}
+
+%Listnings verwalten
+\usepackage{listings}
+
+%Kopf- Fusszeile (Optionen muessen direkt ?bergeben werden)
+\usepackage[automark, %Automatisches aktualisieren der Chapter-Titel
+%            headsepline,  %Linie Kopfzeile
+%            footsepline,  %Linie fusszeilezeile
+%            markuppercase,
+            plainfootsepline  %Plain-Style auch mit Linie versehen
+            ]{scrpage2}
+
+%Flexible Argumente bei Funktionen
+\usepackage{xargs}
+
+%erweiterte Steuerfunktionen
+\usepackage{ifthen}
+
+%Index fuer Stichwortverzeichnis
+\usepackage{makeidx}
+
+%Index fuer Literaturverzeichnis
+\usepackage[babel,german=quotes]{csquotes}
+\usepackage[backend=bibtex,defernumbers=true,sorting=none]{biblatex}
+\bibliography{bibliography}
+% Literatur- und Bilderquellen trennen
+\defbibheading{lit}{\section*{Literatur}}
+\defbibheading{pic}{\section*{Abbildungen}}
+
+%Zusaetzliche Symbole direkt im Text
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{amsthm}                       	
+\usepackage{amsfonts}                      
+\usepackage{exscale}												
+
+%Einheit kontrolliert eingeben
+\usepackage{units}
+%\usepackage[squaren]{SIunits}
+
+%dynamische Datumsausgabe
+\usepackage[german]{isodate}
+
+%Zusaetzlich Mathemtiksymbole
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+%Besser Handling von internen Countern und Berechnungen
+\usepackage{calc}
+
+%TODOs anbringen am Rand
+\usepackage{todonotes}
+
+%Hyperlinks (Muss das letzte geladene Paket sein)
+\usepackage[bookmarks=true, %Verzeichnis generieren
+            bookmarksopen=true, %Verzeichnis ?ffnen
+            bookmarksopenlevel=3, %Tiefe der Verzeichnis?ffnung
+            unicode=false, %non-Latin Zeichen
+            pdftoolbar=true, %PDF-Viewer Toolbar
+            pdfmenubar=true, %PDF-Viewer Men??
+            pdffitwindow=true, %Fenster an Seite anpassen beim ?ffnen
+            pdftitle={\Titel}, %Titel
+            %pdfauthor={\Autor1, \Autor2, \Autor3}, %Autor
+            pdfsubject={\Uebertitel}, %Thema
+%            pdfcreator={\Autor1, \Autor2, \Autor3}, %Ersteller des Dokuments
+%            pdfproducer={\Autor1, \Autor2 \Autor3}, %Produzent des Dokuments
+            pdfnewwindow=true, %Links in neuem Fenster
+            colorlinks=true, %false: Boxen-Links; true: Farben-Links
+            linkcolor=red, %Farbe von internen Links
+            citecolor=red, %Farbe von Links zu Bibliography
+            filecolor=magenta, %Farbe von Links zu Dateien
+            urlcolor=blue %Farbe von externen Links
+            ]{hyperref}
+   
+%Querverweise
+%\usepackage[german]{cleveref}
+\usepackage{nameref}
+\usepackage[german]{varioref}
+
+%Besseres Zeichensetzen
+\usepackage{microtype}
+            
+%Glossar/Abkuerzungsverzeichnis
+\usepackage[acronym,makeindex]{glossaries}

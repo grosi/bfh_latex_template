@@ -1,0 +1,65 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel:   Titelseite
+% Autor:   S. Grossenbacher
+% Datum:   15.10.2012
+% Version: 3.0.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%:::Change-Log:::
+% Versionierung erfolgt auf folgende Gegebenheiten: -1. Stelle Semester
+%                                                   -2. Stelle neuer Inhalt
+%                                                   -3. Fehlerkorrekturen
+%
+% 3.0.0       Erstellung der Datei
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Zeilenabstand wider auf normalen Wert zurückstellen
+\begin{spacing}{1}
+    %
+    %Titelseiteumgebung für eigene Kreation, sonst \maketitle
+    \begin{titlepage}   
+        \newlength{\unitlengthtmp}
+        \setlength{\unitlengthtmp}{\unitlength}
+        \setlength{\unitlength}{1mm}   
+        \setlength{\TPHorizModule}{\textwidth}
+        \setlength{\TPVertModule}{\textheight} 
+        %
+        % BFH Logo
+        \includegraphics[scale=1.25]{titlepage/image/bfh_logo}
+        %
+        % Linien
+        \begin{textblock}{1}[0,0](0,0)
+	        \begin{picture}(0,130)
+	            \put(20,0){\color{bfhblue}\rule{\textwidth}{1.2mm}}
+		        \put(20,40){\color{bfhblue}\rule{\textwidth}{1.2mm}}	%28.5	
+	        \end{picture}
+        \end{textblock} 
+        %
+        %Zentrierte Titel
+        \begin{flushleft}
+            \vspace*{4.08cm}
+            \textsf{\textbf{\noindent{\Huge{\textcolor{bfhblue}{\Titel}}}}}\\[0.4cm]
+            \textsf{\huge{\textcolor{bfhblue}{\Uebertitel}}}
+            %
+            %Angaben zum Dokument
+            \begin{vfill}
+                \begin{tabularx}{\textwidth}{lX}
+                \textsf{Studiengang} & \textsf{\Studiengang}\vspace{5pt}\\
+                \textsf{Autoren} & \textsf\AutorA\\ 
+                               & \textsf\AutorB\vspace{5pt}\\
+                \textsf{Betreuer} & \textsf\DozentA\\
+                                & \textsf\DozentB\vspace{5pt}\\
+                \textsf{Experten} & \textsf\ExpertA\\
+                                  & \textsf\ExpertB\vspace{5pt}\\
+                \textsf{Ort, Datum} & \textsf{\Ort, \Datum}\vspace{5pt}\\
+                &\\
+                &\\
+                \multicolumn{2}{p{\columnwidth-\tabcolsep}}{\textsf{\input{titlepage/titlepage_info}}}\\
+            \end{tabularx}
+            \end{vfill}
+        \end{flushleft}
+        \setlength{\unitlength}{\unitlengthtmp}
+    \end{titlepage}
+\end{spacing}
+

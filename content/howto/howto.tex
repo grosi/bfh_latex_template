@@ -1,0 +1,51 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Titel:   Howto
+% Autor:   Simon grossenbacher
+% Datum:   27.09.2013
+% Version: 1.0.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%:::Change-Log:::
+% Versionierung erfolgt auf folgende Gegebenheiten: -1. Release Versionen
+%                                                   -2. Neue Kapitel
+%                                                   -3. Fehlerkorrekturen
+%
+% 0.0.0       Erstellung der Datei
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
+\chapter{Howto}\label{ch:howto}
+    Eine kurze Installationsanleitung zu \LaTeX unter Windows.
+    %
+    %
+    %
+    \section{Miktex}\label{s:miktex}
+        Miktex ist eine Tex-Distribution für Windows.
+        %
+        %
+        \subsection{Installation}
+            \begin{enumerate}
+                \item Den passenden Net-Installer von der Projekt-Homepage herunterladen: \url{http://miktex.org/download}
+                \image{content/howto/image/miktex_1}{scale=.35}{htbp}[Installations-Datei wählen]
+                %
+                \item Installer starten und als Installationsoption \textsf{MikTex Downloading}, sowie \textsf{Complete} angeben.\footnote{Achtung: Kann über 1GB Speicher benötigen} Anschliessend werden die verschiedenen \LaTeX -Pakete heruntergeladen.
+                %
+                \item Nach dem Download den Installer nochmals starten und dieses Mal \textsl{Install MikTex} anwählen. MikTex wird nun installiert.
+            \end{enumerate}
+    %
+    %
+    %TexMaker
+    \section{TexMaker}\label{s:texmaker}
+        Optionen $\longrightarrow$ Texmaker konfigurieren
+        \image{content/howto/image/texmaker_1}{scale=0.35}{htbp}[Konfiguration Tab 1]
+        \image{content/howto/image/texmaker_2}{scale=0.35}{htbp}[Konfiguration Tab 2]
+    %
+    %
+    %Hinweise
+    \section{Hinweise}
+        \begin{itemize}
+            \item Die \texttt{report.tex} Datei unter Optionen zur Masterdatei machen
+            %
+            \item \textbf{WICHTIG:} Immer darauf achten, dass die \texttt{*.tex} Dateien in ISO-8859 Kodiert und mit Windows Zeilenenden gespeichert werden.
+            \image{content/howto/image/hinweise}{scale=.35}{htpb}[Speichern unter... Dialog]
+            %
+            \item An Apple/Linux Benutzer: Keine \texttt{*.eps} Bilder verwenden! Windows unterstützt dieses Format standardmässig nicht! 
+        \end{itemize}
